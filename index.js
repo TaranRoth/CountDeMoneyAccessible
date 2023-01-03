@@ -31,10 +31,12 @@ function init() {
         </div>`);
     })
     $("body").append(`<p id='total'>Total Value: $0.00</p>`);
+    document.addEventListener("keydown", (e) => {
+        if (parseInt(e.key) != NaN) changeCoin(document.getElementById(coins[parseInt(e.key) - 1]), 1);
+    })
 }
 
 function changeCoin(coin, amt) {
-    
     if (coinAmounts[coinToIndex[coin.id]] >= amt * -1) coinAmounts[coinToIndex[coin.id]] += amt;
     $(`#${coin.id}Display`).text(`${coin.id[0].toUpperCase() + coin.id.substring(1)}: ${coinAmounts[coinToIndex[coin.id]]}`)
     updateTotalVal();
