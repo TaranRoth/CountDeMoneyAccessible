@@ -1,0 +1,11 @@
+body {
+    background-color: beige;
+}
+
+@media screen and (max-width: 756px) {
+    body {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}

@@ -1,3 +1,4 @@
+var showAlert = true;
 var coinToIndex = {
     "pennies" : 0,
     "nickels" : 1,
@@ -39,6 +40,7 @@ function init() {
 function changeCoin(coin, amt) {
     if (coinAmounts[coinToIndex[coin.id]] >= amt * -1) coinAmounts[coinToIndex[coin.id]] += amt;
     $(`#${coin.id}Display`).text(`${coin.id[0].toUpperCase() + coin.id.substring(1)}: ${coinAmounts[coinToIndex[coin.id]]}`)
+    if (showAlert) alert(`You changed ${coin.id} by ${amt}`);
     updateTotalVal();
 }
 
@@ -59,4 +61,9 @@ function valToMoney(val) {
     var cents = val % 100;
     if (cents < 10) cents = `0${cents}`;
     return `$${dollars}.${cents}`;
+}
+
+function toggleAlert() {
+    showAlert = !showAlert;
+    document.getElementById("alert").innerHTML = `<button onclick='toggleAlert();'>Toggle Alert</button> Current Value: ${showAlert}`;
 }
